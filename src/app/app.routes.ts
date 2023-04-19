@@ -1,9 +1,11 @@
 import { Routes } from '@angular/router';
+import { WeightsComponent } from './weights/weights.component';
+import { DistanceComponent } from './distance/distance.component';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'folder/inbox',
+    redirectTo: 'weight',
     pathMatch: 'full',
   },
   {
@@ -11,4 +13,12 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./folder/folder.page').then((m) => m.FolderPage),
   },
+  {
+    path:'weight',
+    component:WeightsComponent
+  },
+  {
+    path:'distance',
+    component:DistanceComponent
+  }
 ];
