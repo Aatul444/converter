@@ -1,38 +1,94 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true" class="ion-no-border">
   <ion-toolbar>
+    <ion-title>Unit Converter</ion-title>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Unit Converter</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+  <ion-header collapse="condense" class="ion-no-border">
     <ion-toolbar>
       <ion-title size="large">Unit Converter</ion-title>
     </ion-toolbar>
   </ion-header>
+
   <div class="container ion-padding">
-
-    <ion-text class="title ion-margin-vertical ion-padding">Basic Distance System</ion-text>
-
     <div class="conversion-box ion-margin-vertical">
-      <div class="box">
-        <input type="number" [(ngModel)]="inputValue" (ngModelChange)="convert()" />
-        <select class="selection" [(ngModel)]="fromUnit" (ngModelChange)="convert()">
-          <option value="meters">Meters</option>
-          <option value="feet">Feet</option>
-          <option value="inches">Inches</option>
-        </select>
+      <div class="measures">
+        <div class="measure" *ngFor="let measure of measures" [class.isActive]="measure.isActive"
+          (click)="selectMeasure(measure)">
+          <a>{{measure.name}}</a>
+        </div>
       </div>
-      <div class="box">
-        <input type="number" [value]="outputValue" disabled />
-        <select class="selection" [(ngModel)]="toUnit" (ngModelChange)="convert()">
-          <option value="meters">Meters</option>
-          <option value="feet">Feet</option>
-          <option value="inches">Inches</option>
-        </select>
+      <ion-text class="title ion-margin-vertical ion-padding ion-padding-top">{{selectedMeasure.title}}</ion-text>
+      <div class="boxes" *ngIf="selectedMeasure.name==='Length'">
+        <div class="box">
+          <input type="number" [(ngModel)]="inputValue" (ngModelChange)="convert()" />
+          <select class="selection" [(ngModel)]="fromUnit" (ngModelChange)="convert()">
+            <option value="meters">Meters</option>
+            <option value="feet">Feet</option>
+            <option value="inches">Inches</option>
+          </select>
+        </div>
+        <div class="box">
+          <input type="number" [value]="outputValue" disabled />
+          <select class="selection" [(ngModel)]="toUnit" (ngModelChange)="convert()">
+            <option value="meters">Meters</option>
+            <option value="feet">Feet</option>
+            <option value="inches">Inches</option>
+          </select>
+        </div>
+      </div>
+      <div class="boxes" *ngIf="selectedMeasure.name==='Area'">
+        <div class="box">
+          <input type="number" [(ngModel)]="inputAreaValue" (ngModelChange)="convertArea()" />
+          <select class="selection" [(ngModel)]="fromAreaUnit" (ngModelChange)="convertArea()">
+            <option value="" default>Select unit</option>
+            <option value="{{unit.unit}}" *ngFor="let unit of selectedMeasure.units">{{unit.name}}({{unit.unit}})
+            </option>
+          </select>
+        </div>
+        <div class="box">
+          <input type="number" [(ngModel)]="outputAreaValue" (ngModelChange)="convertArea()" readonly />
+          <select class="selection" [(ngModel)]="toAreaUnit" (ngModelChange)="convertArea()">
+            <option value="" default>Select unit</option>
+            <option value="{{unit.unit}}" *ngFor="let unit of selectedMeasure.units">{{unit.name}}({{unit.unit}})
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="boxes" *ngIf="selectedMeasure.name==='Weight'">
+        <div class="box">
+          <input type="number" [(ngModel)]="val1" (change)="calculation(unit1,unit2)">
+          <select class="selection" (change)="onUnit1Change($event)">
+            <option [value]="unit.unit" *ngFor="let unit of weightUnits">{{unit.name}} ({{unit.unit}})</option>
+          </select>
+        </div>
+        <div class="box">
+          <input type="number" [(ngModel)]="val2" (change)="calculation(unit1,unit2)" readonly>
+          <select class="selection" (change)="onUnit2Change($event)">
+            <option [value]="unit.unit" *ngFor="let unit of weightUnits">{{unit.name}} ({{unit.unit}})</option>
+          </select>
+        </div>
+      </div>
+      <div class="boxes" *ngIf="selectedMeasure.name==='Volume'">
+        <div class="box">
+          <input type="number" [(ngModel)]="inputVolumeValue" (ngModelChange)="convertVolume()" />
+          <select class="selection" [(ngModel)]="fromVolumeUnit" (ngModelChange)="convertVolume()">
+            <option value="" default>Select unit</option>
+            <option value="{{unit.unit}}" *ngFor="let unit of selectedMeasure.units">{{unit.name}}({{unit.unit}})
+            </option>
+          </select>
+        </div>
+        <div class="box">
+          <input type="number" [(ngModel)]="outputVolumeValue" (ngModelChange)="convertVolume()" readonly />
+          <select class="selection" [(ngModel)]="toVolumeUnit" (ngModelChange)="convertVolume()">
+            <option value="" default>Select unit</option>
+            <option value="{{unit.unit}}" *ngFor="let unit of selectedMeasure.units">{{unit.name}}({{unit.unit}})
+            </option>
+          </select>
+        </div>
       </div>
     </div>
   </div>

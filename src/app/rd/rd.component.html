@@ -1,0 +1,81 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>R.D. Calculator</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense" class="ion-no-border">
+    <ion-toolbar>
+      <ion-title size="large">R.D. Calculator</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <!-- <div class="measures">
+    <div class="measure" *ngFor="let measure of measures" [class.isActive]="measure.isActive"
+      (click)="selectMeasure(measure)">
+      <a>{{measure.name}}</a>
+    </div>
+  </div> -->
+  <ion-list lines="none">
+    <ion-item>
+      <ion-icon slot="start" name="trending-up"></ion-icon>
+      <input type="number" class="rangeInput amount-input" [(ngModel)]="depositAmount"
+         placeholder="Enter Amount"><!--(ngModelChange)="calculateMaturityAmount()"-->
+    </ion-item>
+    <ion-item class="h-line">
+      <ion-label>Principal Amount: {{depositAmount | number : '1.2-2'}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-range aria-label="Range with pin" [pin]="true" [pinFormatter]="pinFormatter" min="0" max="100" step="0.1"
+        [(ngModel)]="interestRate"><!-- (ngModelChange)="calculateMaturityAmount()"-->
+        <ion-icon slot="start" name="trending-up"></ion-icon>
+      </ion-range>
+      <input class="rangeInput" placeholder="Return rate " type="number" [(ngModel)]="interestRate"
+       ><!-- (ngModelChange)="calculateMaturityAmount()"-->
+    </ion-item>
+    <ion-item>
+      <ion-label>Expected Return Rate (p.a.): {{interestRate | number : '1.2-2'}}%</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-range aria-label="Range with pin" [pin]="true" [pinFormatter]="pinFormatter" min="1" max="100" step="1"
+        [(ngModel)]="tenure" ><!--(ngModelChange)="calculateMaturityAmount()"-->
+        <ion-icon slot="start" name="time"></ion-icon>
+      </ion-range>
+      <input class="rangeInput" placeholder="Time period" type="number" [(ngModel)]="tenure"
+        ><!--(ngModelChange)="calculateMaturityAmount()"-->
+    </ion-item>
+    <ion-item>
+      <ion-label>Time Period: {{tenure}} years</ion-label>
+    </ion-item>
+  </ion-list>
+<div class="btns ion-margin-bottom"><ion-button fill="outline" size="default" color="danger" (click)="calculateMaturityAmount()">Let's Earn</ion-button></div>
+  <ion-card class="ion-margin-top" *ngIf="maturityAmount>0" ><!--maturityAmount>0-->
+    <ion-card-header>
+      <ion-card-title>Output</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Invested amount:</ion-label>
+        <ion-label>{{depositAmount | number : '1.2-2'}}</ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Est returns:</ion-label>
+        <ion-label>{{maturityAmount-depositAmount| number : '1.2-2'}}</ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Total value:</ion-label>
+        <ion-label>{{maturityAmount| number : '1.2-2'}}</ion-label>
+      </ion-item>
+
+      <canvas baseChart [datasets]="chartData" [labels]="chartLabels" [options]="chartOptions" [legend]="true"
+        [type]="chartType"></canvas>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

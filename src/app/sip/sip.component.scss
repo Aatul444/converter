@@ -1,0 +1,74 @@
+.measures {
+    display: flex;
+    overflow: scroll;
+    width: 100%;
+    height: 40px;
+    justify-content: center;
+    .measure {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 4px;
+        padding: 12px;
+        text-transform: capitalize;
+        margin-right: 6px;
+        min-width: 100px;
+        &.isActive {
+            // color: var(--ion-color-medium-shade);
+            background-color: #e3edff;
+            // border: 1px solid var(--ion-color-dark);
+            border-radius: 100px;
+            font-weight: 500;
+        }
+        a {
+            color: #1b6dff !important;
+        }
+    }
+}
+.amount-input {
+    border: none;
+    width: 100%!important;
+    :focus {
+        outline: none;
+    }
+}
+.item-inner {
+    border-color: transparent !important;
+}
+.h-line {
+    border-bottom-color: #84afff !important;
+}
+.rangeInput{
+    border: 1px solid grey;
+    border-radius: 4px;
+    width: 30%;
+    margin-left: 10px;
+    height: 45px;
+    padding: 8px;
+    overflow: scroll;
+}
+.btns{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    ion-button {
+        --background: #93e9be;
+        --background-hover: #9ce0be;
+        --background-activated: #88f4be;
+        --background-focused: #88f4be;
+      
+        --color: blue;
+      
+        --border-radius: 0;
+        --border-color: #000;
+        --border-style: solid;
+        --border-width: 1px;
+      
+        --box-shadow: 0 2px 6px 0 rgb(0, 0, 0, 0.25);
+      
+        --ripple-color: deeppink;
+      
+        --padding-top: 10px;
+        --padding-bottom: 10px;
+      }
+}

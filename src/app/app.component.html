@@ -1,29 +1,26 @@
-<ion-app>
-  <ion-split-pane contentId="main-content">
-    <ion-menu contentId="main-content" type="overlay">
-      <ion-content>
-        <ion-list id="inbox-list">
-          <ion-list-header>Converter</ion-list-header>
-          <ion-note>com.converter.app</ion-note>
-
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-            <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
-              <ion-icon aria-hidden="true" slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
-              <ion-label>{{p.title}}</ion-label>
-            </ion-item>
-          </ion-menu-toggle>
-        </ion-list>
-
-        <ion-list id="labels-list">
-          <ion-list-header>Labels</ion-list-header>
-
-          <ion-item *ngFor="let label of labels" lines="none">
-            <ion-icon aria-hidden="true" slot="start" ios="bookmark-outline" md="bookmark-sharp"></ion-icon>
-            <ion-label>{{ label }}</ion-label>
-          </ion-item>
-        </ion-list>
-      </ion-content>
-    </ion-menu>
-    <ion-router-outlet id="main-content"></ion-router-outlet>
-  </ion-split-pane>
-</ion-app>
+<ion-menu contentId="main-content">
+    <div class="header">
+        <div class="header-title">
+            <img src="../assets/icon/growth.png">
+            <h1 class="title">Unit<br> Converter</h1>
+        </div>
+        <div class="version">
+            <ion-text>ver 1.0.0</ion-text>
+            <img src="../assets/icon/favicon.png">
+        </div>
+    </div>
+    <ion-content class="ion-padding menu-buttons" color="light">
+        <ion-text class="menu-buttons-title ion-margin-bottom">More Apps</ion-text>
+        <div class="menu-buttons-app-list">
+            <ion-menu-toggle routerLink="/sip">SIP Calculator</ion-menu-toggle>
+            <!-- <ion-menu-toggle routerLink="/">Unit Converter</ion-menu-toggle> -->
+            <ion-menu-toggle routerLink="/fd">FD Calculator</ion-menu-toggle>
+            <ion-menu-toggle routerLink="/rd">RD Calculator</ion-menu-toggle>
+        </div>
+    </ion-content>
+</ion-menu>
+<div class="ion-page" id="main-content">
+    <ion-app>
+        <ion-router-outlet></ion-router-outlet>
+    </ion-app>
+</div>

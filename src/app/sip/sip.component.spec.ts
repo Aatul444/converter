@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { WeightsComponent } from './weights.component';
+import { SipComponent } from './sip.component';
 
-describe('WeightsComponent', () => {
-  let component: WeightsComponent;
-  let fixture: ComponentFixture<WeightsComponent>;
+describe('SipComponent', () => {
+  let component: SipComponent;
+  let fixture: ComponentFixture<SipComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ WeightsComponent ],
+      declarations: [ SipComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(WeightsComponent);
+    fixture = TestBed.createComponent(SipComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

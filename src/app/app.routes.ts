@@ -1,24 +1,28 @@
 import { Routes } from '@angular/router';
-import { WeightsComponent } from './weights/weights.component';
 import { DistanceComponent } from './distance/distance.component';
+import { SipComponent } from './sip/sip.component';
+import { FdComponent } from './fd/fd.component';
+import { RdComponent } from './rd/rd.component';
 
 export const routes: Routes = [
   {
-    path: '',
-    redirectTo: 'weight',
-    pathMatch: 'full',
+    path:'',
+    component:DistanceComponent
   },
   {
-    path: 'folder/:id',
-    loadComponent: () =>
-      import('./folder/folder.page').then((m) => m.FolderPage),
+    path:'sip',
+    component:SipComponent
   },
   {
-    path:'weight',
-    component:WeightsComponent
+    path:'fd',
+    component:FdComponent
   },
   {
-    path:'distance',
+    path:'rd',
+    component:RdComponent
+  },
+  {
+    path:'**',
     component:DistanceComponent
   }
 ];
